@@ -1,4 +1,5 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   HostBinding,
@@ -17,10 +18,10 @@ import {
   },
 })
 export class CalculatorButtonComponent {
-  public isCommand = input(false);
+  public isCommand = input(false, { transform: booleanAttribute });
+  public isDoubleSize = input(false, { transform: booleanAttribute });
 
-  @HostBinding('class.is-command')
-  public get isCommandClass(): boolean {
-    return this.isCommand();
+  @HostBinding('class.w-2/4') get commandStyle() {
+    return this.isDoubleSize();
   }
 }

@@ -5,3 +5,7 @@ button {
 .is-command {
   @apply bg-indigo-700 bg-opacity-20 hover:bg-opacity-20;
 }
+
+.is-double-size {
+  @apply w-2/4 border-r border-indigo-400;
+}
