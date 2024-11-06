@@ -17,8 +17,8 @@ import {
   styleUrls: ['./calculator-button.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'w-1/4 border-r border-b border-indigo-400',
-    '[class.w-2/4]': 'isDoubleSize()',
+    class: 'border-r border-b border-indigo-400',
+    '[class.w-1/2]': 'isDoubleSize()',
     '[class.w-1/4]': '!isDoubleSize()',
   },
 })
