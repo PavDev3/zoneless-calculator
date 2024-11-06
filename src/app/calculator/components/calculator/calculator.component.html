@@ -41,9 +41,11 @@
     </calculator-button>
   </div>
   <div class="flex w-full">
-    <calculator-button (onClick)="handleClick($event)"> 0 </calculator-button>
-    <calculator-button (onClick)="handleClick($event)"> . </calculator-button>
-    <calculator-button isCommand isDoubleSize (onClick)="handleClick($event)">
+    <div class="flex w-1/2">
+      <calculator-button (onClick)="handleClick($event)">0</calculator-button>
+      <calculator-button (onClick)="handleClick($event)">.</calculator-button>
+    </div>
+    <calculator-button (onClick)="handleClick($event)" isCommand isDoubleSize>
       =
     </calculator-button>
   </div>
