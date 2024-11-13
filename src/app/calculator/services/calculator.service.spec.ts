@@ -18,4 +18,112 @@ describe('CalculatorService', () => {
     expect(service.subResultText()).toBe('0');
     expect(service.lastOperator()).toBe('+');
   });
+
+  it('should set resultText, subResultText to "0" when C is pressed', () => {
+    service.resultText.set('123');
+    service.subResultText.set('456');
+    service.lastOperator.set('-');
+    service.constructNumber('C');
+    expect(service.resultText()).toBe('0');
+    expect(service.subResultText()).toBe('0');
+  });
+
+  it('should update resultText with number input', () => {
+    service.constructNumber('1');
+    expect(service.resultText()).toBe('1');
+
+    service.constructNumber('2');
+    expect(service.resultText()).toBe('12');
+  });
+
+  it('should handle operators correctly', () => {
+    service.constructNumber('1');
+    service.constructNumber('-');
+    expect(service.lastOperator()).toBe('-');
+    expect(service.subResultText()).toBe('1');
+    expect(service.resultText()).toBe('0');
+  });
+
+  it('should calculate result correctly for addition', () => {
+    service.constructNumber('1');
+    service.constructNumber('+');
+    service.constructNumber('2');
+    service.constructNumber('=');
+    expect(service.resultText()).toBe('3');
+  });
+  it('should calculate result correctly for subtraction', () => {
+    service.constructNumber('1');
+    service.constructNumber('-');
+    service.constructNumber('2');
+    service.constructNumber('=');
+    expect(service.resultText()).toBe('-1');
+  });
+
+  it('should calculate result correctly for multiplication', () => {
+    service.constructNumber('2');
+    service.constructNumber('*');
+    service.constructNumber('3');
+    service.constructNumber('=');
+    expect(service.resultText()).toBe('6');
+  });
+
+  it('should calculate result correctly for division', () => {
+    service.constructNumber('6');
+    service.constructNumber('/');
+    service.constructNumber('2');
+    service.constructNumber('=');
+    expect(service.resultText()).toBe('3');
+  });
+
+  it('should handle decimal input correctly', () => {
+    service.constructNumber('1');
+    service.constructNumber('.');
+    service.constructNumber('2');
+    expect(service.resultText()).toBe('1.2');
+  });
+
+  it('should handle multiple decimal input correctly', () => {
+    service.constructNumber('1');
+    service.constructNumber('.');
+    service.constructNumber('2');
+    service.constructNumber('.');
+    expect(service.resultText()).toBe('1.2');
+  });
+
+  it('should handle negative numbers correctly', () => {
+    service.constructNumber('+/-');
+    service.constructNumber('1');
+    expect(service.resultText()).toBe('-1');
+  });
+
+  it('should handle multiple negative numbers correctly', () => {
+    service.constructNumber('+/-');
+    service.constructNumber('1');
+    service.constructNumber('+/-');
+    expect(service.resultText()).toBe('1');
+  });
+
+  it('should handle decimal numbers correctly', () => {
+    service.constructNumber('1');
+    service.constructNumber('.');
+    service.constructNumber('2');
+    expect(service.resultText()).toBe('1.2');
+  });
+
+  it('should handle multiple decimal numbers correctly', () => {
+    service.constructNumber('.');
+    service.constructNumber('2');
+    service.constructNumber('*');
+    service.constructNumber('2');
+    service.constructNumber('=');
+    expect(service.resultText()).toBe('0.4');
+  });
+
+  it('should handle percentage correctly', () => {
+    service.constructNumber('100');
+    service.constructNumber('÷');
+    service.constructNumber('2');
+    service.constructNumber('=');
+    expect(service.resultText()).toBe('0');
+  });
 });
