@@ -126,4 +126,30 @@ describe('CalculatorService', () => {
     service.constructNumber('=');
     expect(service.resultText()).toBe('0');
   });
+
+  it('should handle backspace correctly', () => {
+    service.constructNumber('1');
+    service.constructNumber('2');
+    service.constructNumber('3');
+    service.constructNumber('Backspace');
+    expect(service.resultText()).toBe('12');
+  });
+  it('should handle backspace 1 step to 0 correctly', () => {
+    service.constructNumber('1');
+    service.constructNumber('Backspace');
+    expect(service.resultText()).toBe('0');
+  });
+
+  it('should convert single digit to "0"', () => {
+    service.resultText.set('5');
+    service.constructNumber('Backspace');
+    expect(service.resultText()).toBe('0');
+  });
+
+  it('should handle max length correctly', () => {
+    service.resultText.set('1234567890');
+    service.constructNumber('1');
+    expect(service.resultText()).toBe('1234567890');
+    expect(service.resultText().length).toBe(10);
+  });
 });
