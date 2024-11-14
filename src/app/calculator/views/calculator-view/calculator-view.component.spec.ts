@@ -17,7 +17,6 @@ describe('CalculatorViewComponent', () => {
   });
 
   it('should create the component', () => {
-    console.log(compiled);
     expect(component).toBeTruthy();
   });
 
