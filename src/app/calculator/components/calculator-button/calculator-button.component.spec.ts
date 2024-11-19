@@ -55,12 +55,13 @@ describe('CalculatorButtonComponent', () => {
     expect(component.onClick.emit).toHaveBeenCalled();
   });
 
-  it('should set isPressed to true when the button is pressed', () => {
+  it('should set isPressed to true when the button is pressed', (done) => {
     component.contentValue()!.nativeElement.innerText = '1';
     component.keyboardPressedStyle('1');
     expect(component.isPressed()).toBeTrue();
     setTimeout(() => {
       expect(component.isPressed()).toBeFalse();
+      done();
     }, 100);
   });
 

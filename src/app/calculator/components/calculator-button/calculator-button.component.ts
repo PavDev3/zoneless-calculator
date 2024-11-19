@@ -20,8 +20,8 @@ import {
     class: 'border-r border-b border-indigo-400',
     '[class.w-2/4]': 'isDoubleSize()',
     '[class.w-1/4]': '!isDoubleSize()',
-    // '[style.width]': 'isDoubleSize() ? "50%" : "25%"',
-    // '[style.display]': '"inline-block"',
+    '[style.width]': 'isDoubleSize() ? "50%" : "25%"',
+    '[style.display]': '"inline-block"',
   },
 })
 export class CalculatorButtonComponent {
