@@ -13,6 +13,12 @@ export class CalculatorService {
   public lastOperator = signal('+');
 
   public constructNumber(value: string): void {
+    // Convertir Enter en =
+    if (value === 'Enter') {
+      this.constructNumber('=');
+      return;
+    }
+
     // Validar input
     if (![...numbers, ...operators, ...specialOperators].includes(value)) {
       return;

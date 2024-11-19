@@ -53,4 +53,19 @@ describe('CalculatorComponent', () => {
     expect(component.subResultText()).toBe('30');
     expect(component.lastOperator()).toBe('-');
   });
+
+  it('should handle keyboard events', () => {
+    const eventEnter = new KeyboardEvent('keyup', { key: 'Enter' });
+    document.dispatchEvent(eventEnter);
+    expect(mockCalculatorService.constructNumber).toHaveBeenCalledWith('=');
+    const eventESC = new KeyboardEvent('keyup', { key: 'Escape' });
+    document.dispatchEvent(eventESC);
+    expect(mockCalculatorService.constructNumber).toHaveBeenCalledWith('C');
+  });
+
+  it('should display result text correctly', () => {
+    mockCalculatorService.resultText.and.returnValue('123');
+    fixture.detectChanges();
+    expect(component.resultText()).toBe('123');
+  });
 });
